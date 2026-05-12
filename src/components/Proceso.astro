@@ -1,0 +1,75 @@
+---
+const pasos = [
+  {
+    n: '01',
+    title: 'Contacto',
+    desc: 'Escríbenos por WhatsApp o email contándonos qué le pasa a tu notebook. Te respondemos en menos de 24 horas hábiles.',
+  },
+  {
+    n: '02',
+    title: 'Diagnóstico',
+    desc: 'Revisamos tu equipo a nivel físico y de software. Identificamos la causa real del problema, no solo los síntomas.',
+  },
+  {
+    n: '03',
+    title: 'Presupuesto',
+    desc: 'Recibes un presupuesto detallado con repuestos, tiempo estimado y costo total. Sin sorpresas ni costos ocultos.',
+  },
+  {
+    n: '04',
+    title: 'Reparación',
+    desc: 'Ejecutamos el trabajo con repuestos originales y te entregamos el equipo funcional, con garantía sobre la reparación realizada.',
+  },
+];
+---
+
+<section id="proceso" class="relative py-24 lg:py-32 overflow-hidden">
+  <!-- BG -->
+  <div class="absolute inset-0" style="background-color: var(--color-base-2);"></div>
+  <div class="absolute inset-0 bg-grid-dense opacity-40 pointer-events-none"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-glow-blue opacity-30 pointer-events-none"></div>
+
+  <div class="relative max-w-7xl mx-auto px-5 lg:px-8">
+
+    <div class="max-w-3xl mb-16">
+      <div class="reveal chip mb-5">
+        <span class="status-dot"></span>
+        <span>Proceso</span>
+      </div>
+      <h2 class="reveal font-display text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-5" style="color: var(--color-text-primary);">
+        Cuatro pasos. <span class="text-gradient-neon">Sin vueltas.</span>
+      </h2>
+      <p class="reveal text-lg leading-relaxed" style="color: var(--color-text-secondary);">
+        Un proceso claro desde el primer contacto hasta la entrega. Sabes en qué etapa está tu equipo en todo momento.
+      </p>
+    </div>
+
+    <!-- Steps -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-4 relative">
+
+      <!-- Connecting line desktop -->
+      <div class="hidden lg:block absolute top-12 left-[12.5%] right-[12.5%] h-px" style="background: linear-gradient(90deg, transparent, var(--color-border-hover), var(--color-border-hover), transparent);"></div>
+
+      {pasos.map((p, i) => (
+        <div class="reveal relative">
+          <!-- Number circle -->
+          <div class="relative mb-6 flex items-center">
+            <div
+              class="w-24 h-24 rounded-full flex items-center justify-center font-display font-bold text-3xl relative z-10"
+              style="background: linear-gradient(135deg, var(--color-surface), var(--color-base-2)); border: 1px solid var(--color-border-hover); color: var(--color-neon); box-shadow: 0 0 32px rgba(0, 212, 255, 0.1);"
+            >
+              {p.n}
+            </div>
+          </div>
+
+          <h3 class="font-display text-xl lg:text-2xl font-bold mb-3" style="color: var(--color-text-primary);">
+            {p.title}
+          </h3>
+          <p class="text-sm leading-relaxed" style="color: var(--color-text-secondary);">
+            {p.desc}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,12 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Servicios from '../components/Servicios.astro';
+import Proceso from '../components/Proceso.astro';
+import FAQ from '../components/FAQ.astro';
+import Contacto from '../components/Contacto.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<Layout>
-  <main class="min-h-screen bg-slate-900 text-white flex items-center justify-center">
-    <div class="text-center">
-      <h1 class="text-6xl font-bold mb-4">NotebookRepair.cl</h1>
-      <p class="text-xl text-slate-300">Servicio técnico de notebooks en Santiago</p>
-    </div>
+<Layout title="NotebookRepair.cl — Servicio Técnico de Notebooks en Santiago">
+  <Header />
+  <main>
+    <Hero />
+    <Servicios />
+    <Proceso />
+    <FAQ />
+    <Contacto />
   </main>
+  <Footer />
 </Layout>

@@ -1,5 +1,8 @@
 ---
 import '../styles/global.css';
+
+const { title = 'NotebookRepair.cl — Servicio Técnico de Notebooks en Santiago' } = Astro.props;
+const description = 'Servicio técnico especializado en notebooks en Santiago. Cambio de batería, upgrade SSD/RAM, reparación de placa madre, BIOS, daño líquido, formateo y mantención térmica. 17 años de experiencia.';
 ---
 
 <!DOCTYPE html>
@@ -8,9 +11,94 @@ import '../styles/global.css';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <title>NotebookRepair.cl - Servicio Técnico de Notebooks en Santiago</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="servicio técnico notebooks Santiago, reparación laptop Chile, cambio batería notebook, upgrade SSD, BIOS flash, daño líquido, formateo notebook" />
+    <meta name="author" content="NotebookRepair.cl" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content="https://notebookrepair.cl" />
+    <meta property="og:locale" content="es_CL" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href="https://notebookrepair.cl" />
+
+    <title>{title}</title>
+    <script is:inline>
+      // Marca que JS está habilitado para activar animaciones reveal
+      document.documentElement.classList.add('js-enabled');
+    </script>
   </head>
   <body>
     <slot />
+
+    <script>
+      // Scroll reveal observer
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
+      );
+
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+      // Header shrink on scroll
+      const header = document.getElementById('header');
+      if (header) {
+        const onScroll = () => {
+          if (window.scrollY > 30) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+      }
+
+      // Mobile menu toggle
+      const menuBtn = document.getElementById('menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+        mobileMenu.querySelectorAll('a').forEach((a) =>
+          a.addEventListener('click', () => mobileMenu.classList.add('hidden'))
+        );
+      }
+
+      // FAQ accordion
+      document.querySelectorAll('[data-faq-trigger]').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-faq-trigger');
+          const panel = document.querySelector(`[data-faq-panel="${id}"]`);
+          const icon = btn.querySelector('[data-faq-icon]');
+          if (!panel) return;
+          panel.classList.toggle('hidden');
+          if (icon) icon.classList.toggle('rotate-45');
+        });
+      });
+    </script>
+
+    <style is:global>
+      #header.scrolled {
+        background-color: rgba(10, 14, 26, 0.92) !important;
+        border-bottom-color: var(--color-border-hover) !important;
+      }
+    </style>
   </body>
 </html>
